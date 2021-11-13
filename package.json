@@ -3,9 +3,7 @@
   "version": "1.0.0",
   "description": "web_programming_project",
   "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
+  "scripts": {},
   "repository": {
     "type": "git",
     "url": "git+https://github.com/keonju2/2021_web_programming_project.git"
@@ -15,8 +13,5 @@
   "bugs": {
     "url": "https://github.com/keonju2/2021_web_programming_project/issues"
   },
-  "homepage": "https://github.com/keonju2/2021_web_programming_project#readme",
-  "dependencies": {
-    "express": "^4.17.1"
-  }
+  "homepage": "https://github.com/keonju2/2021_web_programming_project#readme"
 }
