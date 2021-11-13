@@ -1,14 +1,17 @@
 {
   "name": "2021_web_programming_project",
   "version": "1.0.0",
-  "description": "web_programming_project",
-  "main": "index.js",
-  "scripts": {},
+  "description": "// install package\r npm i express\r npm i express-session\r npm i mysql",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/keonju2/2021_web_programming_project.git"
   },
-  "author": "keonju",
+  "author": "",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/keonju2/2021_web_programming_project/issues"
