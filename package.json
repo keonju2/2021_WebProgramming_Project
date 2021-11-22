@@ -16,5 +16,10 @@
   "bugs": {
     "url": "https://github.com/keonju2/2021_web_programming_project/issues"
   },
-  "homepage": "https://github.com/keonju2/2021_web_programming_project#readme"
+  "homepage": "https://github.com/keonju2/2021_web_programming_project#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "express-session": "^1.17.2",
+    "mysql": "^2.18.1"
+  }
 }

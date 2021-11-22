@@ -1,7 +1,7 @@
 let target=document.querySelector("#dynamic");
 
 function randomString(){
-    let stringArr="우리가 만들어가는 우리들만의 이야기"
+    let stringArr="우리가 만들어가는 우리 둘만의 이야기"
     let selectStringArr=stringArr.split(""); 
 
     return selectStringArr
