@@ -1,7 +1,108 @@
-<H1>home</H1>
+<!DOCTYPE html>
+<html lang="ko">
+ 
+<head>
+  <title>우리 둘만의 이야기</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <style>
+  .body{
+    background-color: lightcoral;
+  }
+  .bg-primary{
+    background-color: lightcoral;
+  }
+  </style>
+</head>
+ 
+<body>
+ 
+  <!-- 네비게이션 바 시작 -->
+  <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container-fluid">
+          <!-- Brand and toggle get grouped for better mobile display -->
+          <div class="navbar-header">
+              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
+                  aria-expanded="false", style="background-color: lightcoral;">
+                  <span class="sr-only">Toggle navigation</span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+              </button>
+              <a class="navbar-brand" href="/">우리 둘만의 이야기</a>
+          </div>
+  
+          <!-- Collect the nav links, forms, and other content for toggling -->
+          <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+              <ul class="nav navbar-nav">
+                  <li class="active">
+                      <a href="/">둘만의 일기</a>
+                  </li>
+                  <li>
+                      <a id="conversation" href="/write.html">미래로 보내는 쪽지</a>
+                  </li>
+                  <li>
+                      <a id="loginmenu" href="/logout">로그아웃</a>
+                  </li>
+ 
+              </ul>
+          </div>
+          <!-- /.navbar-collapse -->
+      </div>
+      <!-- /.container-fluid -->
+  </nav>
+<br>
 
-<H1><a href="/test2">Test2</a></H1>
+ 
+  <!-- 네비게이션 바 끝 -->
+ 
+ 
+ 
+  <!-- 점보트론 시작 -->
+  <div class="container">
+    <div class="jumbotron">
+      <h1>
+        <span style="color:white">당신의 생각을 말해줘요.</span>
+      </h1>
+      <p class="bg-light text-lightcoral">
+        <span style="color:white">상대방에게 하고싶은 말을 적어주세요!</span>
+      </p>
+    </div>
+  </div>
+  <br>
+  <!-- 점보트론 끝 -->
 
-<H1><a href="/guest.html">Guest</a></H1>
 
-<H1><a href="/logout">Logout</a></H1>
+  <!-- 쓰기 텍스트 필드 시작-->
+  <div class="container">
+    <div class="form-group">
+      <label for="comment">일기 적기</label>
+      <textarea class="form-control" rows="5" id="comment" placeholder="일기를 적어보세요!"></textarea>
+      <br>
+ 
+
+      <div class="text-left">
+        <label for="comment" id='writename',placeholder=username></label>
+        <input type="submit" value="쓰기">
+        
+      </div>
+    </div>
+  </div>
+  <!-- 쓰기 텍스트 필드 끝-->
+ 
+ 
+ 
+  <!-- 감사리스트 출력하기-->
+  <div class="container">
+    <hr>
+    <h3>일기 리스트</h3>
+    <br>
+    <!-- 감사 리스트 붙일 곳 -->
+    <div class="diarylist"></div>
+  </div>
+  <script src="tiem.js"></script>
+</body>
+</html>

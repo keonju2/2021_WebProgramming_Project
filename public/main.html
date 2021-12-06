@@ -6,9 +6,65 @@
     <title>우리 둘만의 이야기</title>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
      rel="stylesheet">
-    <link href="../css/main_style.css" rel="stylesheet">
+    <style>
+            *{
+        margin:0;
+        padding:0;
+        box-sizing: border-box;
+    }
+
+    body{
+        background-color: lightcoral;
+    }
+
+    .wrap{
+        position: absolute;
+        top:30%;
+        left: 50%;
+        transform: translate(-50%,50%);
+        text-align: center;
+    }
+    .material-icons{
+        font-size:10rem;
+
+    }
+    .btn {
+        background-color: lightcoral; /* Blue background */
+        border: none; /* Remove borders */
+        color: pink; /* White text */
+        padding:0; /* Some padding */
+        font-size:0; /* Set a font size */
+        cursor: pointer; /* Mouse pointer on hover */
+    }
+
+    .lg-text{
+        font-size: 2rem;
+        font-weight: bold;
+    }
+
+    .dynamic{
+        position: relative;
+        display: inline-block;
+    }
+
+    .dynamic::after{
+        content:"";
+        display: block;
+        position: absolute;
+        top:0;
+        right:-10px;
+        width:4px;
+        height: 100%;
+        background-color: white;
+    }
+
+    .dynamic.active::after{
+        display: none;
+    }
+    </style>
 </head>
 <body>
+    <form action ='main' method='get'>
     <div class="wrap">
         <h1>
         <a href="../my/login.html"><button class="btn"><span class="material-icons">lock</span></button></a>
@@ -17,6 +73,7 @@
     <p id="dynamic" class="lg-text">
     </p>
     </div>
-    <script src="../js/main.js"></script>
+    <script src="main.js"></script>
+    </form>
 </body>
 </html>

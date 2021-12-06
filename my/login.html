@@ -45,21 +45,33 @@
 			font-size:15px;
 			color: #ffffff;
 		}
+
+		body{
+			background-color: lightcoral;
+		}
+
+		.login-form{
+			position: absolute;
+			top: 7%;
+			left: 50%;
+			transform: translate(-50%,50%);
+			text-align: center;
+		}
 		</style>
-		<link href="../css/login_style.css" rel="stylesheet">
+		<link href="login_style.css" rel="stylesheet">
 	</head>
 	<body>
 		<div class="login-form">
 			<h1>로그인</h1>
 			<form action="/login" method="POST">
-				<input type="text" name="username" placeholder="Username" required>
-				<input type="password" name="password" placeholder="Password" required>
+				<input type="text" name="username" placeholder="아이디를 입력하세요" required>
+				<input type="password" name="password" placeholder="비밀번호를 입력하세요" required>
 				<input type="submit" value="Login">
 			</form>
 			<p>
 			<a href="/register"><button>회원가입</button></a>
 			<p>
-			<a href="../public/guest.html"><button>우리들만의 이야기 알아보기</button></a>
+			<a href="guest.html"><button>우리들만의 이야기 알아보기</button></a>
 		</div>
 	</body>
 </html>
