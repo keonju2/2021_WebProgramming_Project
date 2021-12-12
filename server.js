@@ -48,6 +48,9 @@ app.get('/', function(request, response) {
 });
 
 app.get('/login', function(request, response) {
+	if(req.cookies){
+        console.log(req.cookies);
+    }
 	response.sendFile(path.join(__dirname + '/my/login.html'));
 });
 
@@ -71,6 +74,7 @@ app.post('/login', function(request, response) {
         response.end();
 	}
 });
+
 
 app.get('/register', function(request, response) {
 	response.sendFile(path.join(__dirname + '/my/register.html'));
@@ -107,48 +111,49 @@ app.post('/register', function(request, response) {
 });
 
 
-app.post('/home', function(request, response) {
-	var username = username;
-    var coupleID = coupleID;
-	var currentTime= request.body.currentTime;
-	var comment=request.body.comment;
-	console.log(username, coupleID, currentTime, comment);
-	if (username && comment && currentTime && coupleID) {
-		connection.query('SELECT * FROM posting WHERE username = ?,coupleID=?, currentTime=?, comment=?', [username, coupleID, currentTime, comment], function(error, results, fields) {
-			if (error) throw error;
-			if (results.length == 0) {
-                connection.query('INSERT INTO posting (username, coupleID, currentTime, comment) VALUES(?,?,?,?)', [username, coupleID, currentTime, comment],
-                function (error, data) {
-                    if (error)
-                    console.log(error);
-                    else
-                    console.log(data);
-                });
-			  response.send('<script type="text/javascript">alert("글이 등록되었습니다."); document.location.href="/home";</script>');
-			} else {
-				response.send('<script type="text/javascript">alert("글이 등록되지 않았습니다."); document.location.href="/home";</script>');
-			}			
-			response.end();
-		});
-	} else {
-		response.send('<script type="text/javascript">alert("내용을 입력하세요"); document.location.href="/home";</script>');
-		response.end();
-	}
-});
-
-
-
 
 app.get('/logout', function(request, response) {
-  request.session.loggedin = false;
-    response.send('<script type="text/javascript">alert("성공적으로 로그아웃 되었습니다."); document.location.href="/";</script>');    
-    response.end();
+	request.session.loggedin = false;
+	  response.send('<script type="text/javascript">alert("성공적으로 로그아웃 되었습니다."); document.location.href="/";</script>');    
+	  response.end();
 });
 
 
 
+app.get('/home/:username', function (request, response) { 
+	// 파일을 읽습니다.
+    fs.readFile(__dirname + '/my/home.html', 'utf8', function (error, data) {
+        // 데이터베이스 쿼리를 실행합니다.
+        connection.query('SELECT * FROM user,posting where username=? or coupleID=?', [request.param('username'),request.param('username')],function (error, results) {
+            // 응답합니다.
+            response.send(ejs.render(data, {
+                data: results
+            }));
+        });
+    });
+});
+
+app.get('/delete/:id', function (request, response) { 
+		// 데이터베이스 쿼리를 실행합니다.
+		connection.query('DELETE FROM posting WHERE id=?', [request.param('id')], function () {
+			// 응답합니다.
+			response.redirect('/home');
+		});
+});
 
 
+app.post('/home', function (request, response) {
+    // 변수를 선언합니다.
+    var body = request.body;
+	var user=request.param('username');
+    // 데이터베이스 쿼리를 실행합니다.
+    connection.query('INSERT INTO posting (username,comment) VALUES (?, ?)', [
+        user, body.comment
+    ], function () {
+        // 응답합니다.
+        response.redirect('/home');
+    });
+});
 
 
 app.get('/home', restrict, function(request, response) {
@@ -159,12 +164,6 @@ app.get('/home', restrict, function(request, response) {
 		response.end();
 	}
 });
-
-
-
-
-
-
 
 app.listen(3000, function () {
     console.log('Server Running at http://127.0.0.1:3000');
