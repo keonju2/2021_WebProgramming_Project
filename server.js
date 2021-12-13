@@ -120,11 +120,11 @@ app.get('/logout', function(request, response) {
 
 
 
-app.get('/home/:username', function (request, response) { 
+app.get('/home', function (request, response) { 
 	// 파일을 읽습니다.
     fs.readFile(__dirname + '/my/home.html', 'utf8', function (error, data) {
         // 데이터베이스 쿼리를 실행합니다.
-        connection.query('SELECT * FROM user,posting where username=? or coupleID=?', [request.param('username'),request.param('username')],function (error, results) {
+        connection.query('SELECT * FROM posting',function (error, results) {
             // 응답합니다.
             response.send(ejs.render(data, {
                 data: results
@@ -142,18 +142,7 @@ app.get('/delete/:id', function (request, response) {
 });
 
 
-app.post('/home', function (request, response) {
-    // 변수를 선언합니다.
-    var body = request.body;
-	var user=request.param('username');
-    // 데이터베이스 쿼리를 실행합니다.
-    connection.query('INSERT INTO posting (username,comment) VALUES (?, ?)', [
-        user, body.comment
-    ], function () {
-        // 응답합니다.
-        response.redirect('/home');
-    });
-});
+
 
 
 app.get('/home', restrict, function(request, response) {

@@ -27,6 +27,23 @@
   .active{
     background-color: white;
   }
+  table{
+    border-style: ridge;
+    border-color: white;
+  }
+  th{
+    height: 40px;
+    text-align: center;
+    font-size: 15pt;
+    color: white;
+  }
+  td{
+    height: 200px;
+    text-align: center;
+    font-size: 13pt;
+    color: black;
+  }
+  }
   </style>
 </head>
  
@@ -42,8 +59,6 @@
                   aria-expanded="false", style="background-color: lightcoral;">
                   <span class="sr-only">Toggle navigation</span>
                   <span class="icon-bar"></span>
-                  <span class="icon-bar"></span>
-                  <span class="icon-bar"></span>
               </button>
               <a class="navbar-brand" href="/" style="color:white">우리 둘만의 이야기</a>
           </div>
@@ -53,9 +68,6 @@
               <ul class="nav navbar-nav" >
                   <li class="active">
                       <a href="/" style="color:black">둘만의 일기</a>
-                  </li>
-                  <li>
-                      <a id="conversation" style="color:white" href="test2.html">미래로 보내는 쪽지</a>
                   </li>
                   <li>
                       <a id="loginmenu" style="color:white" href="/logout">로그아웃</a>
@@ -92,10 +104,14 @@
     <form id="insert_form">
       <div class="form-group">
         <label for="comment" style="color:white">일기 적기</label>
-        <textarea  class="form-control"  rows="5" name="comment" id="comment" placeholder="일기를 적어보세요!"></textarea>
+        
+        <textarea  class="form-control"  rows="10" name="comment" placeholder="일기를 적어보세요!"></textarea>
         <br>
   
-        <input type="submit" value="쓰기">
+        <input type="text" name="user"  placeholder="아이디를 적어주세요!"/>
+        <br>
+        <br>
+        <input type="submit" value="등록하기">
           
       </div>
     </form>
@@ -116,14 +132,14 @@
           <th>번호</th>
           <th>이름</th>
           <th>내용 </th>
-          <th>DELETE</th>
+          <th>삭제</th>
         </tr>
         <% data.forEach(function(item, index) { %>
         <tr>
-            <td><%= item.id %> </td>
-            <td><%= item.username %></td>
-            <td><%= item.comment %></td>
-            <td><a href="/delete/<%= item.id %>">DELETE</a></td>
+            <td width="50"><%= item.id %> </td>
+            <td width="50"><%= item.username %></td>
+            <td width="1000"; color=black><%= item.comment %></td>
+            <td width="50"><a href="/delete/<%= item.id %>">삭제</a></td>
         </tr>
         <% }); %>
       </table>

@@ -16,7 +16,7 @@ INSERT INTO user (id, username, password, email,coupleID) VALUES (1, 'test', 'te
 INSERT INTO user (username, password, email,coupleID) VALUES ('test2', 'test2', 'test2@test.com','test');
 
 
-INSERT INTO posting (username,comment) VALUES ('test2', 'aaaaaaaaaaaaaaaaa');
+INSERT INTO posting (username,comment) VALUES ('test2', 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa');
 
 
 CREATE TABLE IF NOT EXISTS posting (
