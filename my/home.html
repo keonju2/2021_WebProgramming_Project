@@ -106,8 +106,7 @@
         <textarea  class="form-control"  rows="10"  type="text" name="comment" placeholder="일기를 적어보세요!"required></textarea>
         <br>
         <br>
-        <input type="submit" value="등록하기">
-          
+        <input type="submit" value="등록하기"> 
     </form>
   </div>
   <!-- 쓰기 텍스트 필드 끝-->
@@ -122,14 +121,14 @@
     <div class="diarylist">
       <table width="100%" border="1">
         <tr>
-          <th>번호</th>
+          <th>날짜</th>
           <th>이름</th>
           <th>내용 </th>
           <th>삭제</th>
         </tr>
         <% data.forEach(function(item, index) { %>
         <tr>
-            <td width="50"><%= item.id %> </td>
+            <td width="100" ><%= item.year+'/'+item.month+'/'+item.day %></td>
             <td width="50"><%= item.username %></td>
             <td width="1000"; color=black><%= item.comment %></td>
             <td width="50"><a href="/delete/<%= item.id %>">삭제</a></td>

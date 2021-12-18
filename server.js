@@ -5,7 +5,13 @@ var express = require('express');
 var session = require('express-session');
 var bodyParser = require('body-parser');
 var ejs = require('ejs');
+
+
+
+require('date-utils')
+
 const { Script } = require('vm');
+const res = require('express/lib/response');
 
 var connection = mysql.createConnection({
 	host     : 'localhost',
@@ -47,9 +53,10 @@ app.get('/', function(request, response) {
 	response.sendFile(path.join(__dirname + '/my/home.html'));
 });
 
+
 app.get('/login', function(request, response) {
-	if(req.cookies){
-        console.log(req.cookies);
+	if(request.cookies){
+        console.log(request.cookies);
     }
 	response.sendFile(path.join(__dirname + '/my/login.html'));
 });
@@ -63,10 +70,11 @@ app.post('/login', function(request, response) {
 			if (results.length > 0) {
 				request.session.loggedin = true;
 				request.session.username = username;
-				response.redirect('/home');
+				response.send('<script type="text/javascript">alert("로그인에 성공하였습니다!"); document.location.href="/home";</script>');
 				response.end();
 			} else {
-				response.send('<script type="text/javascript">alert("아이디와 패스워드를 확인하세요!"); document.location.href="/login";</script>');    
+				response.send('<script type="text/javascript">alert("아이디와 패스워드를 확인하세요!"); document.location.href="/login";</script>');
+				response.end();    
 			}			
 		});
 	} else {
@@ -122,9 +130,11 @@ app.get('/logout', function(request, response) {
 
 app.get('/home', function (request, response) { 
 	// 파일을 읽습니다.
+	
+	var username=request.session.username;
     fs.readFile(__dirname + '/my/home.html', 'utf8', function (error, data) {
         // 데이터베이스 쿼리를 실행합니다.
-        connection.query('SELECT * FROM posting',function (error, results) {
+        connection.query('SELECT distinct p.id, p.username, p.comment, p.year,p.month,p.day FROM posting p, user u where (u.username=? or u.coupleID=?) and (u.username=p.username or u.coupleID=p.username)',[username,username],function (error, results) {
             // 응답합니다.
             response.send(ejs.render(data, {
                 data: results
@@ -156,10 +166,14 @@ app.get('/insert', function (request, response) {
 app.post('/insert', function (request, response) {
 
     var body = request.body;
+	var username=request.session.username;
+	var newDate=new Date();
+	var year =newDate.toFormat("YY")
+	var month =newDate.toFormat("MM")
+	var day =newDate.toFormat("DD")
 
-
-    connection.query('INSERT INTO posting (username, comment) VALUES (?, ?)', [
-        request.param('username'), body.comment
+    connection.query('INSERT INTO posting (username, comment, year,month,day) VALUES (?, ?,?,?,?)', [
+        username, body.comment, year,month,day
     ], function () {
 		response.send('<script type="text/javascript">alert("등록되었습니다."); document.location.href="/home";</script>'); 
     });
@@ -169,7 +183,7 @@ app.get('/delete/:id', function (request, response) {
 		// 데이터베이스 쿼리를 실행합니다.
 		connection.query('DELETE FROM posting WHERE id=?', [request.param('id')], function () {
 			// 응답합니다.
-			response.redirect('/home');
+			response.send('<script type="text/javascript">alert("삭제되었습니다."); document.location.href="/home";</script>');
 		});
 });
 
