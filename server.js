@@ -133,6 +133,38 @@ app.get('/home', function (request, response) {
     });
 });
 
+
+app.get('/home', restrict, function(request, response) {
+	if (request.session.loggedin) {
+		response.sendFile(path.join(__dirname + '/my/home.html'));
+	} else {
+		response.send('<script type="text/javascript">alert("로그인을 하십시오."); document.location.href="/";</script>'); 
+		response.end();
+	}
+});
+
+
+app.get('/insert', function (request, response) {	
+
+    fs.readFile(__dirname + '/my/home.html', 'utf8', function (error, data) {
+
+        response.send(data);
+    });
+});
+
+
+app.post('/insert', function (request, response) {
+
+    var body = request.body;
+
+
+    connection.query('INSERT INTO posting (username, comment) VALUES (?, ?)', [
+        request.param('username'), body.comment
+    ], function () {
+		response.send('<script type="text/javascript">alert("등록되었습니다."); document.location.href="/home";</script>'); 
+    });
+});
+
 app.get('/delete/:id', function (request, response) { 
 		// 데이터베이스 쿼리를 실행합니다.
 		connection.query('DELETE FROM posting WHERE id=?', [request.param('id')], function () {
@@ -143,16 +175,6 @@ app.get('/delete/:id', function (request, response) {
 
 
 
-
-
-app.get('/home', restrict, function(request, response) {
-	if (request.session.loggedin) {
-		response.sendFile(path.join(__dirname + '/my/home.html'));
-	} else {
-		response.send('<script type="text/javascript">alert("로그인을 하십시오."); document.location.href="/";</script>'); 
-		response.end();
-	}
-});
 
 app.listen(3000, function () {
     console.log('Server Running at http://127.0.0.1:3000');

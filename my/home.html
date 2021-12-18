@@ -25,7 +25,7 @@
     background-color: lightcoral;
   }
   .active{
-    background-color: white;
+    background-color: lightcoral;
   }
   table{
     border-style: ridge;
@@ -43,7 +43,8 @@
     font-size: 13pt;
     color: black;
   }
-  }
+
+  
   </style>
 </head>
  
@@ -60,15 +61,15 @@
                   <span class="sr-only">Toggle navigation</span>
                   <span class="icon-bar"></span>
               </button>
-              <a class="navbar-brand" href="/" style="color:white">우리 둘만의 이야기</a>
+              <a class="navbar-brand" href="/home" style="color:white">우리 둘만의 이야기</a>
           </div>
   
           <!-- Collect the nav links, forms, and other content for toggling -->
           <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
               <ul class="nav navbar-nav" >
                   <li class="active">
-                      <a href="/" style="color:black">둘만의 일기</a>
-                  </li>
+                      <a href="/home" style="color:black">둘만의 일기</a>
+                  </li>    
                   <li>
                       <a id="loginmenu" style="color:white" href="/logout">로그아웃</a>
                   </li>
@@ -89,35 +90,27 @@
   <div class="container-fluid">
     <div class="jumbotron">
       <h1>
-        <span style="color:white">당신의 생각을 말해줘요.</span>
-      </h1>
-      <p class="bg-light text-white">
         <span style="color:white">상대방에게 하고싶은 말을 적어주세요!</span>
-      </p>
+      </h1>
+
     </div>
   </div>
  
-
-
-  <!-- 쓰기 텍스트 필드 시작-->
-  <div class="container-fluid">
-    <form id="insert_form">
-      <div class="form-group">
+   <!-- 쓰기 텍스트 필드 시작-->
+   <div class="container-fluid">
+    <form action="/insert" method="POST">
         <label for="comment" style="color:white">일기 적기</label>
-        
-        <textarea  class="form-control"  rows="10" name="comment" placeholder="일기를 적어보세요!"></textarea>
         <br>
-  
-        <input type="text" name="user"  placeholder="아이디를 적어주세요!"/>
+        
+        <br>
+        <textarea  class="form-control"  rows="10"  type="text" name="comment" placeholder="일기를 적어보세요!"required></textarea>
         <br>
         <br>
         <input type="submit" value="등록하기">
           
-      </div>
     </form>
   </div>
   <!-- 쓰기 텍스트 필드 끝-->
- 
  
  
   <!-- 일기리스트 출력하기-->

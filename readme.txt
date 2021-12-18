@@ -12,4 +12,4 @@ start mysqld -C utf8
 
 C:\Users\keonj\mysql-8.0.27-winx64\bin
 // mysql start
-mysql --default -character-set=utf8 -u root -p
+mysql --default-character-set=utf8 -u root -p
